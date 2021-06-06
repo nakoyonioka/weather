@@ -54,6 +54,7 @@ function App() {
   const [queryString, setQueryString] = useState("");
   const [apiResponse, setApiResponse] = useState(initial_current_weather);
   const [suggestions, setSuggestions] = useState(null);
+  const [display, setDisplay] = useState(false);
 
   useEffect(() => {}, []);
 
@@ -78,8 +79,10 @@ function App() {
         callWeatherApi={callWeatherApi}
         suggestions={suggestions}
         setSuggestions={setSuggestions}
+        display={display}
+        setDisplay={setDisplay}
       />
-      <WeatherData apiResponse={apiResponse} />
+      <WeatherData apiResponse={apiResponse} display={display} />
     </div>
   );
 }

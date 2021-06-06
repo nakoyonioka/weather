@@ -9,8 +9,9 @@ export default function WeatherForm({
   callWeatherApi,
   suggestions,
   setSuggestions,
+  display,
+  setDisplay,
 }) {
-  const [display, setDisplay] = useState(false);
   const autocompleteRef = useRef();
 
   useEffect(() => {
