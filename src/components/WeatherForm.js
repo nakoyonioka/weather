@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 const WEATHER_API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
@@ -10,10 +10,31 @@ export default function WeatherForm({
   suggestions,
   setSuggestions,
 }) {
+  const [display, setDisplay] = useState(false);
+  const autocompleteRef = useRef();
+
+  useEffect(() => {
+    window.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      window.removeEventListener("mousedown", handleOutsideClick);
+    };
+  });
+
+  const handleOutsideClick = (event) => {
+    if (
+      autocompleteRef.current &&
+      !autocompleteRef.current.contains(event.target)
+    ) {
+      setDisplay(false);
+    }
+  };
+
   function handleChange(e) {
+    setDisplay((prev) => !prev);
     setQueryString(e.target.value);
     searchSuggestedCity(e);
   }
+
   async function searchSuggestedCity(e) {
     e.preventDefault();
     const url = ` http://api.weatherapi.com/v1/search.json?key=${WEATHER_API_KEY}&q=${queryString}`;
@@ -24,9 +45,10 @@ export default function WeatherForm({
       console.log(err);
     }
   }
+
   return (
-    <section className="autocomplete">
-      <form className="weather-form" autoComplete="off">
+    <form className="weather-form" autoComplete="off">
+      <div className="autocomplete" ref={autocompleteRef}>
         <input
           value={queryString}
           onChange={handleChange}
@@ -34,21 +56,25 @@ export default function WeatherForm({
           name="city"
           id="city"
         />
-        <button
-          className="search-button"
-          type="submit"
-          onClick={callWeatherApi}
-        >
-          Search
-        </button>
-      </form>
-      {suggestions !== null
-        ? suggestions.map((item) => (
-            <button onClick={callWeatherApi} className="suggestions-list">
-              {item.name}
-            </button>
-          ))
-        : null}
-    </section>
+        {display && (
+          <div className="autocomplete-container">
+            {suggestions !== null
+              ? suggestions.map((item, index) => (
+                  <button
+                    key={index}
+                    onClick={callWeatherApi}
+                    className="suggestions-list"
+                  >
+                    {item.name}
+                  </button>
+                ))
+              : null}
+          </div>
+        )}
+      </div>
+      <button className="search-button" type="submit" onClick={callWeatherApi}>
+        Search
+      </button>
+    </form>
   );
 }
