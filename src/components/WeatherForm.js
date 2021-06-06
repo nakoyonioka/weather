@@ -38,7 +38,7 @@ export default function WeatherForm({
 
   async function searchSuggestedCity(e) {
     e.preventDefault();
-    const url = ` http://api.weatherapi.com/v1/search.json?key=${WEATHER_API_KEY}&q=${queryString}`;
+    const url = ` https://api.weatherapi.com/v1/search.json?key=${WEATHER_API_KEY}&q=${queryString}`;
     try {
       const res = await axios.get(url);
       setSuggestions(res.data);

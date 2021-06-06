@@ -107,26 +107,6 @@ input:focus {
    border-radius: 10px;
 }
 
-@media screen and (max-width:400px) {
-   .search-button {
-      display: block;
-      margin: 0.2em auto;
-   }
-
-   input {
-      width: 100%;
-   }
-   .suggestions-list{
-      width: 200px;
-   }
-   .autocomplete-container{
-      left:10px;
-      height:300px;
-      width: 200px;
-      overflow: scroll;
-   }
-}
-
 .location-name,
 .location-temp {
    height:7vh;
@@ -166,6 +146,42 @@ input:focus {
    font-size: 42px;
    margin-top: 0;
    margin-bottom: 12px;
+}
+
+@media screen and (max-width:400px) {
+   .location-name,
+   .location-temp{
+      font-size:35px;
+      text-align: center;
+   }
+   .location-name{
+      margin-bottom:30px;
+   }
+   .location-temp{
+      margin-top: 20px;;
+   }
+   .location-country{
+      font-size:28px;
+   }
+   .search-button {
+      display: block;
+      margin: 0.2em auto;
+   }
+
+   input {
+      width: 100%;
+   }
+
+   .suggestions-list {
+      width: 200px;
+   }
+
+   .autocomplete-container {
+      left: 10px;
+      height: 300px;
+      width: 200px;
+      overflow: scroll;
+   }
 }
 
 .div-icon{

@@ -60,7 +60,7 @@ function App() {
 
   async function callWeatherApi(e) {
     e.preventDefault();
-    const url = `http://api.weatherapi.com/v1/forecast.json?key=${WEATHER_API_KEY}&q=${queryString}&days=3&aqi=no&alerts=no`;
+    const url = `https://api.weatherapi.com/v1/forecast.json?key=${WEATHER_API_KEY}&q=${queryString}&days=3&aqi=no&alerts=no`;
     try {
       const res = await axios.get(url);
       setApiResponse(res.data);
