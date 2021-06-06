@@ -83,7 +83,7 @@ input {
    display: flex;
    align-items: center;
    justify-content: space-between;
-   width: 23.5em;
+   width: 21.5em;
    border:none;
    margin-bottom:2px;
    padding: 5px;
@@ -133,6 +133,9 @@ input:focus {
    width:100%;
    font-size: 52px;
    font-weight: bold;
+   display:flex;
+   flex-direction:column;
+   align-items: center;
    
 }
 
